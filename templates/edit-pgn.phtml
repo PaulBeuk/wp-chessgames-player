@@ -1,0 +1,98 @@
+<script type='text/javascript' src="<?php printf('%s?d=%d',plugins_url('../js/pac.js',__FILE__ ),time()) ?>"></script>
+<div class="wrap">
+	<div id="faq-wrapper">
+		<form method="post" action="?page=chessgames_pgn">
+			<h2><?= _('Edit game: ') . $this->game->id ?></h2>
+			<input type="hidden" name="editid" value="<?= $this->game->id ?>" />
+			<table class="widefat page" cellpadding="0">
+				<thead>
+					<tr>
+						<th class="manage-column"><?= _e('tag')?></th>
+						<th class="manage-column"><?= _e('Value')?></th>
+					</tr>
+				</thead>
+				<tr>
+					<td><?= _('Event') ?></br></td>
+					<td><input type=text name="Event" value="<?= $this->game->Event ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('Round') ?></br></td>
+					<td><input type=text name="Round" value="<?= $this->game->Round ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('EventDate') ?></br></td>
+					<td><input type=text name="EventDate" value="<?= $this->game->EventDate ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('White') ?></br></td>
+					<td>
+						<input type=text id="nameWhite" name="White" value="<?= $this->game->White ?>" /><?= _('Link') ?>
+						<select name="white_user" id="selectWhite" onchange="setPlayerName('White')">
+							<option value="-1"><?= _('Not found') ?></option>
+							<?php foreach($this->users as $user) { ?>
+								<option value="<?= $user->ID ?>" <?= ($this->game->wp_white_uid==$user->ID) ? "selected" : "" ?>>
+									<?= $user->display_name ?></option>
+							<?php } ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><?= _('WhiteElo') ?></br></td>
+					<td><input type=text name="WhiteElo" value="<?= $this->game->WhiteElo ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('Black') ?></br></td>
+					<td>
+						<input type=text id="nameBlack" name="Black" value="<?= $this->game->Black ?>" /><?= _('Link') ?>
+						<select name="black_user" id="selectBlack" onchange="setPlayerName('Black')">
+							<option value="-1"><?= _('Not found') ?></option>
+							<?php foreach($this->users as $user) { ?>
+								<option value="<?= $user->ID ?>"
+									<?= ($this->game->wp_black_uid==$user->ID) ? "selected" : "" ?>>
+									<?= $user->display_name ?></option>
+							<?php } ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><?= _('Result') ?></br></td>
+					<td><input type=text name="Result" value="<?= $this->game->Result ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('FEN') ?></br></td>
+					<td><input type=text name="FEN" value="<?= $this->game->FEN ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('BlackElo') ?></br></td>
+					<td><input type=text name="BlackElo" value="<?= $this->game->BlackElo ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('Site') ?></br></td>
+					<td><input type=text name="Site" value="<?= $this->game->Site ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('Source') ?></br></td>
+					<td><input type=text name="Source" value="<?= $this->game->Source ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('ECO') ?></br></td>
+					<td><input type=text name="ECO" value="<?= $this->game->ECO ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('GameDate') ?></br></td>
+					<td><input type=text name="GameDate" value="<?= $this->game->GameDate ?>" /></td>
+				</tr>
+				<tr>
+					<td><?= _('PGN') ?></br></td>
+					<td>
+						<textarea rows="20" cols="75" name="pgn"><?= $this->game->pgn ?></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" value="<?= ('Save PGN') ?>" id="pac_edit_pgn" class="button-secondary">
+					</td>
+				</tr>
+		</form>
+	</div>
+</div>

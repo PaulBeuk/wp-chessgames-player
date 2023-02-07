@@ -1,0 +1,42 @@
+
+<script type='text/javascript' src="<?php printf('%s?d=%d',plugins_url('../js/pac.js',__FILE__ ),time()) ?>"></script>
+<?php
+if ( $this->showHeader == "TRUE" ) {
+?>
+<div id="<?php echo $this->gameReference ?>-diagram-header">
+	<p>
+		<?= get_avatar( $this->game->wp_white_uid,30 ); ?>&nbsp;
+		<b><?= $this->game->White ?></b> (<?= $this->game->WhiteElo ?>) -
+		<?= get_avatar( $this->game->wp_black_uid,30 ); ?>&nbsp;
+		<b><?= $this->game->Black ?></b> (<?= $this->game->BlackElo ?>),
+		<?= $this->game->GameDate ?>
+	</p>
+</div>
+<div class="ca-clear"></div>
+<?php
+	}
+?>
+<link type="text/css" rel="stylesheet" href="<?= $this->css ?>"></link>
+<script>
+	new PgnViewer({
+		boardName: '<?= $this->gameReference ?>',
+		pgnString: '<?= $this->pgn ?>',
+		pieceSize: '<?= $this->pieceSize ?>',
+		movesFormat: '<?= $this->movesFormat ?>'
+	});
+	setPgnContainerPosition( '<?= $this->gameReference ?>' ,
+		'<?= $this->movetextAlign ?>', '<?= $this->showHeader ?>' );
+	setPgnNavButtons( '<?= $this->gameReference ?>' , '<?= $this->navbarEnabled ?>');
+	setMovesContainerHeight( '<?= $this->gameReference ?>' ,
+					'<?= $this->pieceSize ?>' , '<?= $this->diagramOnly ?>');
+</script>
+<p>
+	<div id='<?= $this->gameReference."-container" ?>'></div>
+<?php
+	if ( $this->diagramOnly === 'false' ) {
+		echo '<div id="'.$this->gameReference.'-moves" class="ct-moves-container"></div>';
+	} else {
+		echo '<div class="ca-clear"></div>';
+	}
+?>
+</p>

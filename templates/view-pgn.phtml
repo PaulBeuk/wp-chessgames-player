@@ -1,0 +1,100 @@
+<style>
+table,th,td {
+	border:1px solid black;
+	border-collapse:collapse;
+}
+</style>
+<?= $this->getMessage() ? "<H2>".$this->getMessage()."</H2>":"" ?>
+<p>
+	<table class="table table-striped">
+		<tr>
+			<td>id</td>
+			<td><?= $this->game->id ?></td>
+		</tr>
+		<tr>
+			<td>edit</td>
+			<td>
+				<a href="<?= get_admin_url() ?>/admin.php?page=chessgames_pgn&edit=true&id=<?= $this->game->id ?>">
+					<?= $this->game->id ?>
+				</a>
+			</td>
+		</tr>
+		<tr>
+			<td>Inserted by</td>
+			<td>
+				<?= get_avatar( $this->owner->uid,30 ); ?>&nbsp;
+				<?= $this->owner->user_nicename ?>
+			</td>
+		</tr>
+		<tr>
+			<td>white</td>
+			<td>
+				<?= get_avatar( $this->game->wp_white_uid,30 ); ?>&nbsp;
+				<?= $this->game->White ?>&nbsp;
+				Elo: <?= $this->game->WhiteElo ?>
+			</td>
+		</tr>
+		<tr>
+			<td>black</td>
+			<td>
+				<?= get_avatar( $this->game->wp_black_uid,30 ); ?>&nbsp;
+				<?= $this->game->Black ?>&nbsp;
+				Elo: <?= $this->game->BlackElo ?>
+			</td>
+		</tr>
+		<tr>
+			<td>Result</td>
+			<td><?= $this->game->Result ?></td>
+		</tr>
+		<tr>
+			<td>Gamedate</td>
+			<td><?= $this->game->GameDate ?></td>
+		</tr>
+		<tr>
+			<td>Event</td>
+			<td><?= $this->game->Event ?></td>
+		</tr>
+		<tr>
+			<td>EventDate</td>
+			<td><?= $this->game->EventDate ?></td>
+		</tr>
+		<tr>
+			<td>ECO</td>
+			<td><?= $this->game->ECO ?></td>
+		</tr>
+		<tr>
+			<td>InsertDate</td>
+			<td><?= $this->game->InsertDate ?></td>
+		</tr>
+		<tr>
+			<td>FEN</td>
+			<td><?= $this->game->FEN ?></td>
+		</tr>
+		<tr>
+			<td>Site</td>
+			<td><?= $this->game->Site ?></td>
+		</tr>
+		<tr>
+			<td>Source</td>
+			<td><?= $this->game->Source ?></td>
+		</tr>
+		<tr>
+			<td>Round</td>
+			<td><?= $this->game->Round ?></td>
+		</tr>
+	</table>
+</p>
+<script type='text/javascript' src="<?= plugins_url('../js/chesstempo/pgnyui.js',__FILE__ ) ?>"></script>
+<script type='text/javascript' src="<?= plugins_url('../js/chesstempo/pgnviewer.js',__FILE__ ) ?>"></script>
+<link type="text/css" rel="stylesheet" href="<?= $this->css ?>"></link>
+<script>
+	new PgnViewer({
+		boardName: '<?= $this->gameid ?>',
+		pgnString: '<?= $this->pgn ?>',
+		pieceSize: 29
+	});
+</script>
+<p>
+	<div id='<?= $this->gameid ."-container" ?>'></div>
+	<div id='<?= $this->gameid ."-moves" ?>' class="ct-moves-container"></div>
+</p>

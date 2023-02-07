@@ -1,0 +1,80 @@
+<style>
+.fileuploader {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: default;
+}
+
+.filename {
+    float: left;
+    display: inline-block;
+    outline: 0 none;
+    height: 30px;
+    width: 302px;
+    overflow: hidden;
+    border: 1px solid #CCCCCC;
+    color: #777;
+    text-shadow: 1px 1px 0px #fff;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 0px 0px 1px #fff inset;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 6px 10px;
+}
+
+.filebutton {
+    float: left;
+    height: 30px;
+    display: inline-block;
+    outline: 0 none;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 1px #fff inset;
+    color: #555555;
+    margin-left: 3px;
+    padding: 6px 12px;
+    background: #DDDDDD;
+    background:-moz-linear-gradient(top, #EEEEEE 0%, #DDDDDD 100%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEEEEE), color-stop(100%, #DDDDDD));filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#DDDDDD', GradientType=0);
+}
+
+.fileuploader input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    height: 30px;
+    cursor: pointer;
+    filter:alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+}
+</style>
+<div class="wrap">
+	<div id="faq-wrapper">
+		<p>
+		<form action="?page=chessgames_pgn" method="post" enctype="multipart/form-data">
+		    <label for="file"><?= __('PGN filename:') ?></label>
+		    <input type="file" name="mypgn" id="mypgn">
+		    <input type="submit" name="submit" value="<?= __('Upload PGN') ?>">
+		</form>
+		</p>
+		<p>
+		<form method="post" action="?page=chessgames_pgn">
+			<h2><?= _('Add PGN') ?></h2>
+			<div id="poststuff" class="metabox-holder">
+				<p>PGN: <textarea rows="20" cols="75" name="chessgames_pgntext"></textarea>
+				</p>
+			</div>
+			<input type="submit" value="<?= ('Sumbit PGN') ?>" id="pac_add_pgn" class="button-secondary">
+		</form>
+		</p>
+	</div>
+</div>

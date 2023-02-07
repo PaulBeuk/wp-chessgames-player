@@ -1,0 +1,35 @@
+<?php
+if ( $this->showHeader() == "TRUE" ) {
+?>
+	<p>
+		<?= get_avatar( $this->game->wp_white_uid,30 ); ?>&nbsp;
+		<b><?= $this->game->White ?></b> (<?= $this->game->WhiteElo ?>) -
+		<?= get_avatar( $this->game->wp_black_uid,30 ); ?>&nbsp;
+		<b><?= $this->game->Black ?></b> (<?= $this->game->BlackElo ?>),
+		<?= $this->game->GameDate ?>
+	</p>
+<?php
+	} else {
+?>
+		<p>effe niets<?= $this->showHeader(); ?></p>
+<?php
+	}
+?>
+<script type="text/javascript" src="http://chesstempo.com/js/pgnyui.js"></script>
+<script type="text/javascript" src="http://chesstempo.com/js/pgnviewer.js"></script>
+<link type="text/css" rel="stylesheet" href="<?= $this->css ?>"></link>
+<script>
+	new PgnViewer({
+		boardName: '<?= $this->gameReference ?>',
+		pgnString: '<?= $this->pgn ?>',
+		pieceSize: 40
+	});
+</script>
+<p>
+	<div id='<?= $this->gameReference."-container" ?>'></div>
+<?php
+	if ( ! $this->showDiagram() ) {
+		echo '<div id="'.$this->gameReference.'-moves" class="ct-moves-container"></div>';
+	}
+?>
+</p>

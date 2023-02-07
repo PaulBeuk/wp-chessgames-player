@@ -1,0 +1,37 @@
+<p>
+	<?= get_avatar( $this->game->wp_white_uid,30 ); ?>&nbsp;
+	<b><?= $this->game->White ?></b> (<?= $this->game->WhiteElo ?>) -
+	<?= get_avatar( $this->game->wp_black_uid,30 ); ?>&nbsp;
+	<b><?= $this->game->Black ?></b> (<?= $this->game->BlackElo ?>),
+	<?= $this->game->GameDate ?>
+</p>
+<script type="text/javascript" src="http://chesstempo.com/js/pgnyui.js"></script>
+<script type="text/javascript" src="http://chesstempo.com/js/pgnviewer.js"></script>
+<link type="text/css" rel="stylesheet" href="<?= $this->css ?>"></link>
+<style>
+.ct-black-square { 
+	background: url("http://chesstempo.com/images/dark-wood.gif") no-repeat;   
+}
+.ct-white-square { 
+	background: url("http://chesstempo.com/images/light-wood.gif") no-repeat;  
+}
+</style>
+
+<script>
+	new PgnViewer({
+		boardName: '<?= $this->gameid ?>',
+		pgnString: '<?= $this->pgn ?>',
+		movesFormat: 'main_on_own_line',
+		pieceSize: 40
+	});
+</script>
+<p>
+	<div id='<?= $this->gameid ."-container" ?>'></div>
+	<div id='<?= $this->gameid ."-moves" ?>' class="ct-moves-container"></div>
+</p>
+<div class="ct-licentie">
+	<p>
+		Met dank aan <a href="http://chesstempo.com" target="_blank">Chess Tempo</a>
+		voor de PGN-viewer.
+	</p>
+</div>
